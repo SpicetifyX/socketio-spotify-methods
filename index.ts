@@ -50,16 +50,14 @@ io.on("connection", async (socket) => {
     ],
   ];
 
-  for (const theme of themes) {
-    client.injectTheme(theme[0]!, theme[1]!, theme[2]!, theme[3]!);
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+  while (true) {
+    for (const theme of themes) {
+      client.removeThemes();
+      console.log("Injecting theme: ", theme);
+      client.injectTheme(theme[0]!, theme[1]!, theme[2]!, theme[3]!);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+    }
   }
-
-  client.removeThemes();
-
-  client.on("songchange", (msg) => {
-    console.log(msg);
-  });
 });
 
 httpServer.listen(3000, () => {
