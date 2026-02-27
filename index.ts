@@ -36,15 +36,26 @@ io.on("connection", async (socket) => {
       "catppuccin",
       "mocha",
     ],
+    [
+      "https://raw.githubusercontent.com/m0squdev/spicetify-dracula-theme/refs/heads/main/Dracula/user.css",
+      "https://raw.githubusercontent.com/m0squdev/spicetify-dracula-theme/refs/heads/main/Dracula/color.ini",
+      "Dracula",
+      "Base",
+    ],
+    [
+      "https://raw.githubusercontent.com/0x25CBFC4F/spicetify-pink-void/refs/heads/main/user.css",
+      "https://raw.githubusercontent.com/0x25CBFC4F/spicetify-pink-void/refs/heads/main/color.ini",
+      "PinkVoid",
+      "p1nk v01d",
+    ],
   ];
 
   for (const theme of themes) {
-    client.removeThemes();
     client.injectTheme(theme[0]!, theme[1]!, theme[2]!, theme[3]!);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
   }
 
-  // client.removeThemes();
+  client.removeThemes();
 
   client.on("songchange", (msg) => {
     console.log(msg);
